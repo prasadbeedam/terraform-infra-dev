@@ -20,7 +20,6 @@ resource "aws_lb_listener" "http" {
   port              = "80"
   protocol          = "HTTP"
 
-
   default_action {
     type = "fixed-response"
 
@@ -30,4 +29,23 @@ resource "aws_lb_listener" "http" {
       status_code  = "200"
     }
   }
+}
+
+module "records" {
+  source  = "terraform-aws-modules/route53/aws//modules/records"
+  version = "~> 2.0"
+
+  zone_name = var.zone_name
+  
+  records = [
+    {
+      name    = "*.app-${var.environment}"
+      type    = "A"
+      allow_overwrite = true
+      alias   = {
+        name    = aws_lb.app_alb.dns_name
+        zone_id = aws_lb.app_alb.zone_id
+      }
+    }
+  ]
 }
