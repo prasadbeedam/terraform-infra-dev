@@ -1,3 +1,1 @@
-# Expense Architecture
-
-![alt text](expense-infra-dev.drawio.svg)
+![alt text](../../../../../../Downloads/expense-infra-dev.drawio.svg)
