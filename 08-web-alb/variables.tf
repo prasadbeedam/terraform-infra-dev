@@ -11,11 +11,10 @@ variable "common_tags" {
     Project = "expense"
     Environment = "dev01"
     Terraform = "true"
-    Component = "backend"
+    component = "web_alb"
   }
 }
 
 variable "zone_name" {
   default = "anuprasad.online"
 }
-
