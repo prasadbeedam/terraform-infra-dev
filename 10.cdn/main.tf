@@ -1,6 +1,6 @@
 resource "aws_cloudfront_distribution" "web_cdn" {
   origin {
-    domain_name              =  "web-${var.environment}.${var.zone_name}"#web-dev.daws78s.online
+    domain_name              =  "web-${var.environment}.${var.zone_name}"#web-dev.anuprasad.online
     origin_id                = "web-${var.environment}.${var.zone_name}"
     custom_origin_config  {
         http_port              = 80 // Required to be set but not used
