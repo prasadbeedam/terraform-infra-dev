@@ -27,12 +27,16 @@ pipeline {
                """
             }
         }
-        stage('deploy') {
+      stage('Deploy') {
+            input {
+                message "Should we continue?"
+                ok "Yes, we should."
+            }
             steps {
-               sh """
-               cd 01-vpc
-               terraform destroy -auto-approve
-               """
+                sh """
+                cd 01-vpc
+                terraform apply -auto-approve
+                """
             }
         }
     }
