@@ -14,53 +14,18 @@ pipeline {
         stage('Init') {
             steps {
                sh """
-                cd 01-vpc
-                terraform init -reconfigure
+                ls -ltr
                """
             }
         }
-        stage('Plan') {
-            when {
-                expression{
-                    params.action == 'Apply'
-                }
-            }
+        stage('plan') {
             steps {
-                sh """
-                cd 01-vpc
-                terraform plan
-                """
+               sh 'echo this is test'
             }
         }
-        stage('Deploy') {
-            when {
-                expression{
-                    params.action == 'Apply'
-                }
-            }
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
-            }
+        stage('deploy') {
             steps {
-                sh """
-                cd 01-vpc
-                terraform apply -auto-approve
-                """
-            }
-        }
-
-        stage('Destroy') {
-            when {
-                expression{
-                    params.action == 'Destroy'
-                }
-            }
-            steps {
-                sh """
-                cd 01-vpc
-                terraform destroy -auto-approve
-                """
+               sh 'echo this is deploy'
             }
         }
     }
