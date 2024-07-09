@@ -21,7 +21,10 @@ pipeline {
         }
         stage('plan') {
             steps {
-               sh 'echo this is test'
+               sh """
+               cd 01-vpc
+               terraform plan
+               """
             }
         }
         stage('deploy') {
@@ -33,7 +36,7 @@ pipeline {
     post { 
         always { 
             echo 'I will always say Hello again!'
-            deleteDir()
+            deleteDir()  // delete the previous work space
         }
         success { 
             echo 'I will run when pipeline is success'
