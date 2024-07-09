@@ -29,7 +29,10 @@ pipeline {
         }
         stage('deploy') {
             steps {
-               sh 'echo this is deploy'
+               sh """
+               cd 01-vpc
+               terraform apply -auto-approve
+               """
             }
         }
     }
