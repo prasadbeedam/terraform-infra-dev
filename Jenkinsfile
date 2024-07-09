@@ -7,14 +7,15 @@ pipeline {
         disableConcurrentBuilds()
         ansiColor('xterm')
     }
-    parameters {
-        choice(name: 'action', choices: ['Apply', 'Destroy'], description: 'Pick something')
-    }
+    // parameters {
+    //     choice(name: 'action', choices: ['Apply', 'Destroy'], description: 'Pick something')
+    // }
     stages {
         stage('Init') {
             steps {
                sh """
-                ls -ltr
+                cd 01-vpc
+                terraform init -reconfigure
                """
             }
         }
